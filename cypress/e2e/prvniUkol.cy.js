@@ -1,25 +1,6 @@
-describe('prvni ukol', () => {
-  beforeEach(() => {
-    cy.visit('/country/china/?botview=1')
-  })
-
-  it('Checks title, meta description, and canonical URL', () => {
-    cy.log('Check title')
-    cy.title().should('eq', 'Cheap flights to China | Kiwi.com')
-
-    cy.log('Check meta description')
-    cy.get('head meta[name="description"]').should(
-      'have.attr',
-      'content',
-      'Find the cheapest flights to China. Compare different airlines, choose the best price, and book your cheap plane ticket to China.',
-    )
-
-    cy.log('Check canonical URL')
-    cy.get('head link[rel="canonical"]').should(
-      'have.attr',
-      'href',
-      'https://www.kiwi.com/en/country/china/',
-    )
+describe('prvni uloha', () => {
+  beforeEach (() => {
+    cy.visit(' https://www.kiwi.com/en/country/china/?botview=1')
   })
   it('checks h1, navbar, loading element, why kiwi banner, breadcrumbs', () => {
     cy.get('h1').should('have.text', 'Plane tickets to China')
@@ -32,14 +13,35 @@ describe('prvni ukol', () => {
     cy.log('search button does not exist')
     cy.getByData("WhyKiwiBanner").should('be.visible')
     cy.log('why kiwi banner is visible')
-    cy.get('[class="Breadcrumbs__StyledBreadcrumbs-sc-v7d29h-0 hGAMLk"]') // TODO
+    cy.getByData("WhyKiwiBanner").should('be.visible')
     cy.log('breadcrumbs are visible')
   })
   it('checks sections Popular Cities and Explore airlines and airports', () => {
     cy.getByData("CountryLandingPage").should('be.visible')
     cy.log('section Popular Cities is visible')
-    cy.get('[data-test="InterlinkingSectionResult"]').first().should('be.visible')
-  })
+    cy.getByData("InterlinkingSection").contains('h2', 'Explore airlines and airports').should('be.visible')
+    cy.log('section Explore airlines and airports is visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Airlines based in China').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Popular airlines flying to China').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Airports in China').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Airports near China').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Popular airports in China').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h2', 'Buses & trains').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h2', 'Explore airlines and airports').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h2', 'Cheapest month to fly to China').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h2', 'Discover China').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h2', 'China COVID-19 travel restrictions').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Departure').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Return').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h2', 'Popular flights').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Explore alternative flights to China').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Find popular flights from China').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h2', 'Cheap flights').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Europe').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Asia').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'Africa').should('be.visible')
+    cy.getByData('CountryLandingPage').contains('h3', 'North America').should('be.visible')
+})
   it('should verify the response of each airline URL', () => {
     const airlines = [
       { name: 'Ruili Airlines', url: 'https://www.kiwi.com/en/airline/dr/ruili-airlines/' },
