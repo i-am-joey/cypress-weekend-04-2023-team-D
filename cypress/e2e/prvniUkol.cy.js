@@ -26,7 +26,7 @@ describe('prvni ukol', () => {
     cy.log('h1 is Plane tickets to China')
     cy.get('[data-test="NavBar"]').should('be.visible')
     cy.log('navbar is visible')
-    cy.get('.Herostyled__SearchForm-sc-j7sblu-4').should('be.visible') //  TODO
+    cy.get('[class*="SearchForm"]').should('be.visible')
     cy.log('search form is visible')
     cy.getByData('LandingSearchButton').should('not.exist')
     cy.log('search button does not exist')
