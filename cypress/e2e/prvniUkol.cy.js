@@ -120,7 +120,7 @@ Cypress._.times(3, () => {
       { name: 'Tijan Airlines', url: 'https://www.kiwi.com/en/airline/gs/tianjin-airlines/' },
       { name: '9 Air', url: 'https://www.kiwi.com/en/airline/aq/9-air/' },
     ]
-
+    cy.log('verify the response of each airline URL')
     cy.visit('/country/china/?botview=1')
     airlines.forEach(airline => {
       cy.get('[class*=TextLink__StyledTextLink]').contains(airline.name).click()
@@ -128,6 +128,25 @@ Cypress._.times(3, () => {
         expect(response.status).to.eq(200) // or 302
       })
       cy.go('back')
+    })
+  })
+  it('All URL from section contains substring /en/airline/', () => {
+    cy.log('Check URL form section contain /en/airline/')
+    cy.get('.LinksListstyled__UnorderedList-sc-1uds6px-0.kwatjS')
+      .find('a')
+      .then($links => {
+        const hrefs = []
+        $links.each((index, link) => {
+          const href = link.href
+          hrefs.push(href)
+        })
+        cy.writeFile('cypress/fixtures/hrefs.json', hrefs)
+      })
+
+    cy.fixture('hrefs').then(hrefs => {
+      hrefs.forEach(href => {
+        expect(href).to.contains('en/airline')
+      })
     })
   })
 })
