@@ -1,9 +1,12 @@
 import expectedHreflangs from '../fixtures/hreflangs.json'
 
 describe('druha uloha', () => {
-  const initialUrl = 'https://www.kiwi.com/mx/cheap-flights/london-united-kingdom/istanbul-turkey/'
+  const initialUrl = `${Cypress.config(
+    'baseUrl',
+  )}mx/cheap-flights/london-united-kingdom/istanbul-turkey/`
   beforeEach(() => {
-    cy.visit('en/country/china/?botview=1')
+    cy.setCookie('__kwc_agreed', 'true')
+    cy.visit(initialUrl)
   })
 
   it('Checks the language from URL is not supported', () => {

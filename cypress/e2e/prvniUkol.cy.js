@@ -1,5 +1,6 @@
 describe('prvni ukol', () => {
   beforeEach(() => {
+    cy.setCookie('__kwc_agreed', 'true')
     cy.visit('en/country/china/?botview=1')
   })
 
