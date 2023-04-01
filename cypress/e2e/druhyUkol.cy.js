@@ -3,7 +3,7 @@ import expectedHreflangs from '../fixtures/hreflangs.json'
 describe('druha uloha', () => {
   const initialUrl = 'https://www.kiwi.com/mx/cheap-flights/london-united-kingdom/istanbul-turkey/'
   beforeEach(() => {
-    cy.visit(initialUrl)
+    cy.visit('en/country/china/?botview=1')
   })
 
   it('Checks the language from URL is not supported', () => {
