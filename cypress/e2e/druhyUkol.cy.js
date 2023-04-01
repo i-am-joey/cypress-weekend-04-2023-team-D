@@ -1,6 +1,6 @@
 import expectedHreflangs from '../fixtures/hreflangs.json'
 
-describe.only('druha uloha', () => {
+describe('druha uloha', () => {
   const initialUrl = 'https://www.kiwi.com/mx/cheap-flights/london-united-kingdom/istanbul-turkey/'
   beforeEach(() => {
     cy.visit(initialUrl)
@@ -16,7 +16,7 @@ describe.only('druha uloha', () => {
       expect(lang).to.equal('es')
     })
   })
-  it.only('Checks the hreflangs', () => {
+  it('Checks the hreflangs', () => {
     cy.log('Compare extracted hreflangs with actual hreflangs')
     cy.get('link[rel="alternate"]').then($hreflangs => {
       const hreflangs = Array.from($hreflangs).map(link => link.getAttribute('hreflang'))
