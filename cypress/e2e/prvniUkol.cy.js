@@ -20,5 +20,8 @@ describe('template spec', () => {
       'href',
       'https://www.kiwi.com/en/country/china/',
     )
+
+    cy.log('Check Footer section')
+    cy.getByData('StaticFooterMap')
   })
 })
