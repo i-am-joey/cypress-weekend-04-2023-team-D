@@ -1,6 +1,6 @@
 describe('prvni ukol', () => {
   beforeEach(() => {
-    cy.visit(' /country/china/?botview=1')
+    cy.visit('/country/china/?botview=1')
   })
 
   it('Checks title, meta description, and canonical URL', () => {
@@ -22,44 +22,51 @@ describe('prvni ukol', () => {
     )
   })
   it('checks h1, navbar, loading element, why kiwi banner, breadcrumbs', () => {
+    cy.log('h1 = Plane tickets to China')
     cy.get('h1').should('have.text', 'Plane tickets to China')
-    cy.log('h1 is Plane tickets to China')
-    cy.get('[data-test="NavBar"]').should('be.visible')
     cy.log('navbar is visible')
-    cy.get('.Herostyled__SearchForm-sc-j7sblu-4').should('be.visible') //  TODO
+    cy.get('[data-test="NavBar"]').should('be.visible')
     cy.log('search form is visible')
-    cy.getByData("LandingSearchButton").should('not.exist')
+    cy.get('.Herostyled__SearchForm-sc-j7sblu-4').should('be.visible')
     cy.log('search button does not exist')
-    cy.getByData("WhyKiwiBanner").should('be.visible')
+    cy.getByData("LandingSearchButton").should('not.exist')
     cy.log('why kiwi banner is visible')
     cy.getByData("WhyKiwiBanner").should('be.visible')
     cy.log('breadcrumbs are visible')
+    cy.get('[class*="Breadcrumbs"]').should('be.visible')
   })
-  it('checks sections Popular Cities and Explore airlines and airports', () => {
-    cy.getByData("CountryLandingPage").should('be.visible')
+  it('checks if sections and subsections are visible', () => {
     cy.log('section Popular Cities is visible')
-    cy.getByData("InterlinkingSection").contains('h2', 'Explore airlines and airports').should('be.visible')
-    cy.log('section Explore airlines and airports is visible')
+    cy.getByData('CountryLandingPage').should('be.visible')
+    cy.getByData('InterlinkingSection').contains('h2', 'Explore airlines and airports').should('be.visible')
+    cy.log('checking h3 elements')
     cy.getByData('CountryLandingPage').contains('h3', 'Airlines based in China').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h3', 'Popular airlines flying to China').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h3', 'Airports in China').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h3', 'Airports near China').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h3', 'Popular airports in China').should('be.visible')
+    cy.log('checking h2 elements')
     cy.getByData('CountryLandingPage').contains('h2', 'Buses & trains').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h2', 'Explore airlines and airports').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h2', 'Cheapest month to fly to China').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h2', 'Discover China').should('be.visible')
+    cy.log('covid restrictions section is visible')
     cy.getByData('CountryLandingPage').contains('h2', 'China COVID-19 travel restrictions').should('be.visible')
+    cy.log('departure and return sections are visible')
     cy.getByData('CountryLandingPage').contains('h3', 'Departure').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h3', 'Return').should('be.visible')
+    cy.log('popular flights section is visible')
     cy.getByData('CountryLandingPage').contains('h2', 'Popular flights').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h3', 'Explore alternative flights to China').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h3', 'Find popular flights from China').should('be.visible')
+    cy.log('cheap flights section is visible')
     cy.getByData('CountryLandingPage').contains('h2', 'Cheap flights').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h3', 'Europe').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h3', 'Asia').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h3', 'Africa').should('be.visible')
     cy.getByData('CountryLandingPage').contains('h3', 'North America').should('be.visible')
+   
+
   })
   it('should verify the response of each airline URL', () => {
     const airlines = [
