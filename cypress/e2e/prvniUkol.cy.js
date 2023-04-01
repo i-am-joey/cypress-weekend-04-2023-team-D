@@ -1,6 +1,6 @@
 describe('prvni ukol', () => {
   beforeEach(() => {
-    cy.visit(' /country/china/?botview=1')
+    cy.visit('/country/china/?botview=1')
   })
 
   it('Checks title, meta description, and canonical URL', () => {
