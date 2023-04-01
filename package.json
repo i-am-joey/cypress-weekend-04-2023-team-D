@@ -20,5 +20,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
     "prettier": "2.8.7"
+  },
+  "dependencies": {
+    "cypress-plugin-xhr-toggle": "^1.0.0"
   }
 }
