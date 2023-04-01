@@ -1,6 +1,7 @@
 describe('prvni ukol', () => {
   beforeEach(() => {
     cy.visit('en/country/china/?botview=1')
+    cy.setCookie('__kwc_agreed', 'true')
   })
 
   it('Checks title, meta description, and canonical URL', () => {
